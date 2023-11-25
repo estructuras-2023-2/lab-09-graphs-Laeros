@@ -83,4 +83,9 @@ string reconstruye(vector<string> carreteras) {
             carreterasDanadas.emplace_back(id, ciudad1, ciudad2, costo);
         }
     }
+    
+    // Ordenamiento de carreteras dañadas
+    sort(carreterasDanadas.begin(), carreterasDanadas.end(), [](const Carretera& a, const Carretera& b) {
+        return (a.costo != b.costo) ? (a.costo < b.costo) : (a.id < b.id);
+    });
 }

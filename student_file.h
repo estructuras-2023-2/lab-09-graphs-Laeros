@@ -70,3 +70,17 @@ string reconstruye(vector<string> carreteras) {
         ciudades.insert(ciudad1);
         ciudades.insert(ciudad2);
     }
+    
+    // Procesamiento de carreteras
+    for (const auto& carreteraStr : carreteras) {
+        stringstream ss(carreteraStr);
+        string id, ciudad1, ciudad2;
+        int costo = 0;
+        ss >> id >> ciudad1 >> ciudad2;
+        if (!(ss >> costo)) {
+            gestionadorConectividad.unirConjuntos(ciudad1, ciudad2);
+        } else {
+            carreterasDanadas.emplace_back(id, ciudad1, ciudad2, costo);
+        }
+    }
+}

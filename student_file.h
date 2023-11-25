@@ -39,3 +39,14 @@ public:
         return true;
     }
 };
+
+class Carretera {
+public:
+    string id;
+    string ciudad1;
+    string ciudad2;
+    int costo;
+
+    Carretera(string i, string c1, string c2, int co = 0) : id(i), ciudad1(c1), ciudad2(c2), costo(co) {}
+};
+

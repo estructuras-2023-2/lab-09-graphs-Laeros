@@ -96,4 +96,20 @@ string reconstruye(vector<string> carreteras) {
             carreterasSeleccionadas.insert(carretera.id);
         }
     }
+    
+    // Verificación de la conectividad de ciudades
+    string raiz = gestionadorConectividad.encontrar(*ciudades.begin());
+    for (const auto& ciudad : ciudades) {
+        if (gestionadorConectividad.encontrar(ciudad) != raiz) {
+            return "IMPOSIBLE";
+        }
+    }
+
+    // Generación del resultado
+    string resultado;
+    for (const auto& id : carreterasSeleccionadas) {
+        resultado += id + " ";
+    }
+
+    return resultado.empty() ? "" : resultado.substr(0, resultado.length() - 1);
 }

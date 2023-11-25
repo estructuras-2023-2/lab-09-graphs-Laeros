@@ -1,5 +1,9 @@
 #include <string>
 #include <map>
+#include <vector>
+#include <sstream>
+#include <set>
+#include <algorithm>
 
 using namespace std;
 
@@ -50,3 +54,19 @@ public:
     Carretera(string i, string c1, string c2, int co = 0) : id(i), ciudad1(c1), ciudad2(c2), costo(co) {}
 };
 
+string reconstruye(vector<string> carreteras) {
+    vector<Carretera> carreterasDanadas;
+    GestionadorConectividadCiudades gestionadorConectividad;
+    set<string> ciudades;
+    set<string> carreterasSeleccionadas;
+
+    // Inicialización de conjuntos y ciudades
+    for (const auto& carreteraStr : carreteras) {
+        stringstream ss(carreteraStr);
+        string id, ciudad1, ciudad2;
+        ss >> id >> ciudad1 >> ciudad2;
+        gestionadorConectividad.crearConjunto(ciudad1);
+        gestionadorConectividad.crearConjunto(ciudad2);
+        ciudades.insert(ciudad1);
+        ciudades.insert(ciudad2);
+    }

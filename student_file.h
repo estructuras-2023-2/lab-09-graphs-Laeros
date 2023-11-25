@@ -88,4 +88,12 @@ string reconstruye(vector<string> carreteras) {
     sort(carreterasDanadas.begin(), carreterasDanadas.end(), [](const Carretera& a, const Carretera& b) {
         return (a.costo != b.costo) ? (a.costo < b.costo) : (a.id < b.id);
     });
+
+    // Selección de carreteras para reconstrucción
+    for (const auto& carretera : carreterasDanadas) {
+        if (gestionadorConectividad.encontrar(carretera.ciudad1) != gestionadorConectividad.encontrar(carretera.ciudad2)) {
+            gestionadorConectividad.unirConjuntos(carretera.ciudad1, carretera.ciudad2);
+            carreterasSeleccionadas.insert(carretera.id);
+        }
+    }
 }
